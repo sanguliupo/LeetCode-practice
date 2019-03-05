@@ -29,15 +29,15 @@ class LinkedList{
 
 
   prepend(value){
-    const newNode= new Node(value);
-    newNode.next=this.head;
-    this.head.previous=newNode;
-    this.head=newNode;
+    const newNode = new Node(value);
+    newNode.next = this.head;
+    this.head.previous = newNode;
+    this.head = newNode;
     this.length++;
   }
   printList(){
     const array=[];
-    let currentNode=this.head;
+    let currentNode = this.head;
     while (currentNode !== null){
       array.push(currentNode.value);
       currentNode = currentNode.next;
@@ -51,14 +51,14 @@ class LinkedList{
     }
     const newNode= new Node(value);
     if (index<1){
-      const second=this.head;
-      this.head=newNode;
-      newNode.next= second;
+      this.prepend(value)
     }else{
-      const leader=this.traverseToIndex(index-1);
-      const holdingPointer=leader.next;
-      leader.next=newNode;
-      newNode.next=holdingPointer;
+      const leader = this.traverseToIndex(index-1);
+      const holdingPointer = leader.next;
+      leader.next = newNode;
+      newNode.previous = leader;
+      newNode.next = holdingPointer;
+      holdingPointer.previous = newNode;
     }
     this.length++;
   }
@@ -68,20 +68,22 @@ class LinkedList{
       return LinkedList;
     }
     if (index<1){
-      this.head=this.head.next;
+      this.head = this.head.next;
+      this.head.previous = null;
     }else{
-      const leader=this.traverseToIndex(index-1);
-      leader.next=leader.next.next;
+      const leader = this.traverseToIndex(index-1);
+      leader.next = leader.next.next;
+      leader.next.previous = leader;
     }
     this.length--;
   }
   
 
   traverseToIndex(index){
-    let counter=0;
-    let currentNode=this.head;
-    while(counter !==index){
-      currentNode=currentNode.next;
+    let counter = 0;
+    let currentNode = this.head;
+    while(counter !== index){
+      currentNode = currentNode.next;
       counter++;
     } 
     return currentNode;
@@ -91,8 +93,8 @@ class LinkedList{
 const myLinkedList= new LinkedList(10);
 myLinkedList.append(5);
 myLinkedList.append(16);
-
-// myLinkedList.prepend(1);
-// myLinkedList.insert(0,77);
-// myLinkedList.printList();
-console.log(myLinkedList);
+myLinkedList.prepend(1);
+myLinkedList.insert(2,77);
+myLinkedList.remove(2);
+myLinkedList.printList();
+// console.log(myLinkedList);
