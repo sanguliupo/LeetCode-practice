@@ -5,18 +5,28 @@ function threeSum(arr){
 	
 	let sol = [];
 	let l = arr.length;
+	let i = 0;
+	let j = i+1;
+	let k = l-1;
+	
 
 	if (l<3){
 		return sol;
 	}
 
-	for (var i = 0; i<l-2; i++){
+	for (i = 0; i<l-2; i++){
 		if (i==0 || arr[i]>arr[i-1]){
-			var j = i+1;
-			var k = l-1;
+			
 			
 			while (k > j){
-				var sum = arr[i] + arr[j] + arr[k];
+				let sum = arr[i] + arr[j] + arr[k];
+
+				console.log('arr[i] is ', arr[i]);
+				console.log('arr[j] is ', arr[j]);
+				console.log('arr[k] is ', arr[k]);
+				console.log('sum is ', sum);
+
+
 				if (sum == 0){
 					sol.push([arr[i], arr[j], arr[k]]);
 					j++;
@@ -40,10 +50,9 @@ function threeSum(arr){
 		}	
 
 	}
-	
 	return sol;
 }
 
 
-let arr=[-2,-3,-2,-1,0,1,1];
+let arr=[-3,-2,-1,0,1];
 console.log(threeSum(arr));
