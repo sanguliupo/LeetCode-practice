@@ -16,17 +16,17 @@ function ListNode(val) {
     this.next = null;
 }
 
-let l1 = new ListNode(2);
-let l12 = new ListNode(4);
-let l13 = new ListNode(3);
-l1.next = l12;
-l12.next = l13;
+// let l1 = new ListNode(2);
+// let l12 = new ListNode(4);
+// let l13 = new ListNode(3);
+// l1.next = l12;
+// l12.next = l13;
 
-let l2 = new ListNode(5);
-let l22 = new ListNode(6);
-let l23 = new ListNode(4);
-l2.next = l22;
-l22.next = l23;
+// let l2 = new ListNode(5);
+// let l22 = new ListNode(6);
+// let l23 = new ListNode(4);
+// l2.next = l22;
+// l22.next = l23;
 
 var addTwoNumbers = function(l1, l2) {
     let dummy1 = new ListNode(0);
