@@ -1,7 +1,7 @@
 var countPrimes = function(n) {
     let flagArray = [],
         result = 0;
-    for(let i = 2; i < n; i++){
+    for(let i = 2; i < n; i++){ //O(n)
         if(flagArray[i] === undefined){
             flagArray[i] = 1; //i is a prime number
             result++;
@@ -16,4 +16,4 @@ var countPrimes = function(n) {
     return result;
 }
 
-console.log(countPrimes(15));
+console.log(countPrimes(20));

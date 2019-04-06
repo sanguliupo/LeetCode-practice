@@ -3,9 +3,9 @@ var twoSum = function(arr, target) {
    let comp={};
     for (var i=0; i<arr.length; i++){
     	if(comp[target-arr[i]] !==undefined){
-    		return [comp[target-arr[i]],i];
+    		return [comp[target-arr[i]],target-arr[i]];
     	}else{
-    	comp[arr[i]] = i;
+    	   comp[arr[i]] = target-arr[i];
     	}
     	// console.log("i", i);
     	// console.log("comp[target-arr[i]]", comp[target-arr[i]]);
