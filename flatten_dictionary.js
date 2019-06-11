@@ -1,34 +1,35 @@
 dict1 = {
-    Key1: '1',
-    Key2: { a: '2', b: { d: '3' } }
+	Key1: '1',
+	Key2: {
+		a: '2',
+		b: {
+			'': '3'
+		}
+	}
 };
 
 function flattenDictionary(dict) {
-    flatDictionary = {};
-    flattenDictionaryHelper('', dict, flatDictionary);
-    return flatDictionary;
+	result = {};
+	helper('', dict, result);
+	return result;
 }
 
-function flattenDictionaryHelper(initialKey, dict, flatDictionary) {
-    for (key in dict) {
-        if (typeof dict[key] === 'string') {
-            if (initialKey == null || initialKey == '') {
-                flatDictionary[key] = dict[key];
-            } else {
-                flatDictionary[initialKey + '.' + key] = dict[key];
-            }
-        } else {
-            if (initialKey == null || initialKey == '') {
-                flattenDictionaryHelper(key, dict[key], flatDictionary);
-            } else {
-                flattenDictionaryHelper(
-                    initialKey + '.' + key,
-                    dict[key],
-                    flatDictionary
-                );
-            }
-        }
-    }
+function helper(initKey, dict, result) {
+	for (key in dict) {
+		if (typeof dict[key] === 'string') {
+			if (initKey == null || initKey == '') {
+				result[key] = dict[key];
+			} else {
+				result[initKey + (key === '' ? '' : '.' + key)] = dict[key];
+			}
+		} else {
+			if (initKey == null || initKey == '') {
+				helper(key, dict[key], result);
+			} else {
+				helper(initKey + '.' + key, dict[key], result);
+			}
+		}
+	}
 }
 
 console.log(flattenDictionary(dict1));
